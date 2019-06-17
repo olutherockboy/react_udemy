@@ -71,9 +71,15 @@ removeBlock = (index) =>{
 }
 
   render(){
+    const Style ={
+      background: "green"
+    }
+
     const showContent = this.state.showContent;
     let Content;
     if(showContent) {
+      Style.background ="red"
+
       Content = (
       <div>
         {this.state.Persons.map((P,index) =>{
@@ -89,14 +95,17 @@ removeBlock = (index) =>{
 
         let list = this.state.inputText
         var letters = list.split("")
-        console.log(letters)
+        
+        
+
+        
     
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
 
-          <button onClick={this.showContentHandler}>
+          <button onClick={this.showContentHandler} style={Style} >
             Show Content 
          
           </button>
