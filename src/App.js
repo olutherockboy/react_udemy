@@ -15,14 +15,20 @@ state ={
 }
 
 
-changeTextInput =(event) => {
+changeTextInput =(event,id) => {
+  const personIndex= this.state.Persons.findIndex((p)=>{
+    return  p.key == id;
+  });
+
+  const person = { ...this.state.Persons[personIndex]}
+
+  person.Name = event.target.value;
+
+  const persons = [...this.state.Persons];
+  persons[personIndex]=person;
+
 this.setState({
-  Persons:[
-
-    {key:1, Name: event.target.value ,Age:29},
-    {key:2, Name: event.target.value ,Age:30}
-
-  ]
+  Persons: persons
 
 })
 
@@ -34,7 +40,7 @@ showContentHandler = () =>{
 }
 
 deletePerson = (index)=>{
-  const newArray = this.state.Persons;
+  const newArray = this.state.Persons.slice();
   newArray.splice(index,1);
 this.setState({
 Persons: newArray
@@ -52,7 +58,7 @@ Persons: newArray
         key ={P.key}
         name={P.Name}
         age={P.age}
-        changeTextInput={this.changeTextInput}
+        changeTextInput={(event)=> this.changeTextInput(event,P.key)}
         deletePerson={()=> this.deletePerson(index)}
         />})}
       </div>)
