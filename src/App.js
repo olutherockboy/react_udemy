@@ -1,14 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import Person from './Person/Person';
+import Person from './Person/Person';
 
 class App extends React.Component{
 
-State ={
+state ={
   Persons:[
     {key:1, Name:"1",Age:29},
-    {key:2, Name:"2",Age:30}
+    {key:2, Name:"2",Age:30},
+    {key:3, Name:"3",Age:30}
   ],
   showContent: true
 }
@@ -28,24 +29,34 @@ this.setState({
 }
 
 showContentHandler = () =>{
-  let b = true
-  this.setState({
-    showContent: !b
-  })
+    const doesShow = this.state.showContent
+  this.setState({showContent: !doesShow});
+}
+
+deletePerson = (index)=>{
+  const newArray = this.state.Persons;
+  newArray.splice(index,1);
+this.setState({
+Persons: newArray
+})
 }
 
   render(){
-    const showContent = this.State.showContent;
+    const showContent = this.state.showContent;
     let Content;
-    if(showContent){
-      Content =  <Person 
-      key ={this.State.Persons[0].key}
-      name={this.State.Persons[0].Name}
-      age={this.State.Persons[0].age}
-      changeTextInput={this.changeTextInput}
-
-      />
-    }
+    if(showContent) {
+      Content = (
+      <div>
+        {this.state.Persons.map((P,index) =>{
+          return <Person 
+        key ={P.key}
+        name={P.Name}
+        age={P.age}
+        changeTextInput={this.changeTextInput}
+        deletePerson={()=> this.deletePerson(index)}
+        />})}
+      </div>)
+        }
     
     return (
       <div className="App">

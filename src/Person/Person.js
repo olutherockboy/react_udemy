@@ -1,5 +1,5 @@
 import React from 'react';
-// import './person.css';
+import './Person.css';
 
 
 
@@ -9,6 +9,7 @@ const Person = (props)=>{
         <div className="person">
             <p>{props.name}</p>
             <input type="text" onChange={props.changeTextInput} value={props.name} ></input>
+            <button onClick={props.deletePerson} >DELETE</button>
         </div>
     )
 }
