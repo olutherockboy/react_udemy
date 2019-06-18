@@ -4,6 +4,7 @@ import './App.css';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
+import Radium,{StyleRoot} from 'radium';
 
 class App extends React.Component{
 
@@ -72,13 +73,20 @@ removeBlock = (index) =>{
 
   render(){
     const Style ={
-      background: "green"
+      background: "green",
+      ':hover':{
+        background:"lightgreen"
+
+      }
     }
 
     const showContent = this.state.showContent;
     let Content;
     if(showContent) {
       Style.background ="red"
+      Style[':hover'] ={
+        background: 'pink',
+      }
 
       Content = (
       <div>
@@ -96,11 +104,19 @@ removeBlock = (index) =>{
         let list = this.state.inputText
         var letters = list.split("")
         
-        
-
-        
+     
+        var klass = ''
+        if(this.state.Persons.length<3){
+          klass = "red"
+        }
+        if(this.state.Persons.length<2)
+        {
+          klass = 'red bold'
+        }
+       
     
     return (
+      <StyleRoot>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -109,11 +125,16 @@ removeBlock = (index) =>{
             Show Content 
          
           </button>
-           {/* {this.State.Persons.map( person =>  */}
+          
+
+          <h1 className={klass} >WARNING !!!</h1>
+           
+           <h2>test</h2>
+
            
            {Content}
            
-           {/* )} */}
+       
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -135,7 +156,8 @@ removeBlock = (index) =>{
 
         </header>
       </div>
+  </StyleRoot>  
     );
   }
 }
-export default App;
+export default Radium(App);

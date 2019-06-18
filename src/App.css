@@ -26,3 +26,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.red{
+  color: red
+}
+
+.bold{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+h2{
+  color: chocolate;
+}
+
+h2:hover{
+  color: pink;
+}
